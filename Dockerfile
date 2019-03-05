@@ -1,5 +1,10 @@
+#
+# BULDING:
+#
+#  docker build -t local/dcache --build-arg VERSION=5.0.5 .
+
 # Minimalistic Java image
-FROM alpine:3.7
+FROM alpine:3.9
 MAINTAINER dCache "https://www.dcache.org"
 
 ARG VERSION
@@ -11,7 +16,6 @@ ENV DCACHE_INSTALL_DIR=/opt/dcache
 RUN apk --update add openjdk8-jre
 
 # Add dCache
-RUN mkdir /opt
 ADD dcache-${DCACHE_VERSION}.tar.gz /opt
 RUN mv /opt/dcache-${DCACHE_VERSION} ${DCACHE_INSTALL_DIR}
 
