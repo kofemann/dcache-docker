@@ -7,7 +7,7 @@ version: '2'
 services:
 
   zk:
-    image: zookeeper
+    image: zookeeper:3.5
     restart: always
 
   pg:
