@@ -5,7 +5,7 @@ MAINTAINER dCache "https://www.dcache.org"
 ARG VERSION
 # dCache version placeholder
 ENV DCACHE_VERSION=${VERSION}
-ENV DCACHE_INSTALL_DIR=/opt/dcache-${DCACHE_VERSION}
+ENV DCACHE_INSTALL_DIR=/opt/dcache
 
 # Add JRE
 RUN apk --update add openjdk8-jre
@@ -13,6 +13,7 @@ RUN apk --update add openjdk8-jre
 # Add dCache
 RUN mkdir /opt
 ADD dcache-${DCACHE_VERSION}.tar.gz /opt
+RUN mv /opt/dcache-${DCACHE_VERSION} ${DCACHE_INSTALL_DIR}
 
 # Run dCache as user 'dcache'
 RUN addgroup dcache && adduser -S -G dcache dcache
