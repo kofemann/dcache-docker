@@ -32,7 +32,7 @@ services:
 
 
   dcache:
-    image: dcache/dcache:4.2
+    image: dcache/dcache:5.0
     depends_on:
     - pg
     - zk
