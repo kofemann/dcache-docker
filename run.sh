@@ -31,7 +31,6 @@ ASPECT_AGENT=`ls ${DCACHE_HOME}/share/classes/aspectjweaver-*.jar`
 JMX_PORT=7771
 
 /usr/bin/java -server \
-	-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap \
 	-Dsun.net.inetaddr.ttl=1800 \
 	-Dorg.globus.tcp.port.range=20000,25000 \
 	-Dorg.dcache.dcap.port=0 \
@@ -41,7 +40,6 @@ JMX_PORT=7771
 	-Djava.security.krb5.realm= \
 	-Djava.security.krb5.kdc= \
 	-Djavax.security.auth.useSubjectCredsOnly=false \
-	-Djava.security.auth.login.config=${DCACHE_INSTALL_DIR}/etc/gss.conf \
 	-XX:+HeapDumpOnOutOfMemoryError \
 	-XX:HeapDumpPath=${DCACHE_INSTALL_DIR}/var/log/${DOMAIN}-oom.hprof \
 	-XX:+UseCompressedOops \

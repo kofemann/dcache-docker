@@ -4,7 +4,7 @@
 #  docker build -t local/dcache --build-arg VERSION=5.0.5 .
 
 # Minimalistic Java image
-FROM alpine:3.9
+FROM alpine:3.10
 MAINTAINER dCache "https://www.dcache.org"
 
 ARG VERSION
@@ -12,15 +12,20 @@ ARG VERSION
 ENV DCACHE_VERSION=${VERSION}
 ENV DCACHE_INSTALL_DIR=/opt/dcache
 
+# Run dCache as user 'dcache'
+RUN addgroup dcache && adduser -S -G dcache dcache
+
 # Add JRE
-RUN apk --update add openjdk8-jre
+RUN apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 # Add dCache
 ADD dcache-${DCACHE_VERSION}.tar.gz /opt
 RUN mv /opt/dcache-${DCACHE_VERSION} ${DCACHE_INSTALL_DIR}
 
-# Run dCache as user 'dcache'
-RUN addgroup dcache && adduser -S -G dcache dcache
+# generate ssh keys
+RUN apk --update add openssh
+RUN ssh-keygen -t rsa -b 2048 -N '' -f ${DCACHE_INSTALL_DIR}/etc/admin/ssh_host_rsa_key
+RUN chown dcache:dcache ${DCACHE_INSTALL_DIR}/etc/admin/ssh_host_rsa_key
 
 # fix liquibase
 RUN rm ${DCACHE_INSTALL_DIR}/share/classes/liquibase-core-*.jar
@@ -50,11 +55,6 @@ VOLUME /pool
 EXPOSE 2288 22125 2049 32049 22224
 
 ENTRYPOINT ["/run.sh"]
-
-# generate ssh keys
-RUN apk --update add openssh
-RUN ssh-keygen -t rsa -b 2048 -N '' -f ${DCACHE_INSTALL_DIR}/etc/admin/ssh_host_rsa_key
-RUN chown dcache:dcache ${DCACHE_INSTALL_DIR}/etc/admin/ssh_host_rsa_key
 
 # run as user dcache
 USER dcache
