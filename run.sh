@@ -1,12 +1,13 @@
 #!/bin/sh
 
-if [ $# != 1 ]
+# default domain name equal to hostname
+DOMAIN=`hostname`
+
+if [ $# = 1 ]
 then
-  echo "Domain name is required"
-  exit 1
+    DOMAIN=$1
 fi
 
-DOMAIN=$1
 
 DCACHE_HOME=${DCACHE_INSTALL_DIR}
 export CLASSPATH=${DCACHE_HOME}/share/classes/*

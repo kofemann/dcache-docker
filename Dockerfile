@@ -58,6 +58,3 @@ ENTRYPOINT ["/run.sh"]
 
 # run as user dcache
 USER dcache
-
-# default domain
-CMD ["core"]
