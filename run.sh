@@ -8,20 +8,6 @@ fi
 
 DOMAIN=$1
 
-# wait for postgres to become online
-echo -n "Wating for postress to become online"
-while true
-do 
-nc db-host 5432 < /dev/null > /dev/null 2>&1
-if [ $? = 0 ]; then
-  echo " Done"
-  break
-fi 
-echo -n "."
-sleep 1
-done
-
-
 DCACHE_HOME=${DCACHE_INSTALL_DIR}
 export CLASSPATH=${DCACHE_HOME}/share/classes/*
 
