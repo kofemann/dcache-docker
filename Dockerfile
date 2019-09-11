@@ -36,7 +36,6 @@ COPY liquibase-core-3.5.3.jar ${DCACHE_INSTALL_DIR}/share/classes/liquibase-core
 COPY dcache.conf ${DCACHE_INSTALL_DIR}/etc/dcache.conf
 COPY docker-layout.conf ${DCACHE_INSTALL_DIR}/etc/layouts/docker-layout.conf
 COPY exports ${DCACHE_INSTALL_DIR}/etc/exports
-RUN  ln -s /authorized_keys ${DCACHE_INSTALL_DIR}/etc/admin/authorized_keys2
 COPY run.sh /run.sh
 
 # where we store the data
