@@ -25,6 +25,7 @@ ASPECT_AGENT=`ls ${DCACHE_HOME}/share/classes/aspectjweaver-*.jar`
 	-Djava.security.krb5.realm= \
 	-Djava.security.krb5.kdc= \
 	-Djavax.security.auth.useSubjectCredsOnly=false \
+	-Dlogback.configurationFile=${DCACHE_HOME}/etc/logback.xml \
 	-XX:+HeapDumpOnOutOfMemoryError \
 	-XX:HeapDumpPath=${DCACHE_INSTALL_DIR}/var/log/${DOMAIN}-oom.hprof \
 	-XX:+UseCompressedOops \
