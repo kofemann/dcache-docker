@@ -4,7 +4,7 @@
 #  docker build -t local/dcache --build-arg VERSION=5.0.5 .
 
 # Minimalistic Java image
-FROM alpine:3.10
+FROM alpine:3.13
 MAINTAINER dCache "https://www.dcache.org"
 
 ARG VERSION
