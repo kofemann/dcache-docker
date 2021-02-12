@@ -11,7 +11,7 @@ services:
     restart: always
 
   pg:
-    image: postgres
+    image: postgres:13
     environment:
     - POSTGRES_DB=chimera
     - POSTGRES_PASSWORD=let-me-in
