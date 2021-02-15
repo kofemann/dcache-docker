@@ -9,6 +9,10 @@ services:
   zk:
     image: zookeeper:3.5
     restart: always
+    environment:
+    - ZOO_LOG4J_PROP=WARN,CONSOLE
+    - ZOO_ADMINSERVER_ENABLED=false
+    mem_limit: 512m
 
   pg:
     image: postgres:13
