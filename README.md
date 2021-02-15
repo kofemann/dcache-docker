@@ -1,19 +1,18 @@
 Running dCache in a container
 =============================
 
-Howto build
+How to build
 -----------
 
 The dockerized dCache uses tar-based distribution to build the docker image.
-For example, to built cotainer to run version 3.1.2 you will need to copy
+For example, to built container to run version 3.1.2 you will need to copy
 dcache-3.1.2.tar file into current directory and run __docker run__ command:
 
 ```
 $ docker build -t local/dcache-3.1 --build-arg=VERSION=3.1.2 .
 ```
 
-
-Howto run
+How to run
 ---------
 
 The dockerized dCache on startup will use **/etc/dcache/layouts/docker-layout.conf** file.
@@ -21,7 +20,7 @@ The argument to *'docker run'* command can the the domain name which have to be 
 By default, **core** domain is stared.
 
 
-The volume **/pool** allows to percist dcache pool's data on conrainer restarts.
+The volume **/pool** allows to persist dCache pool's data on container restarts.
 To access dCache admin interface via ssh, you need to provide **/authorized_keys** as
 external volume:
 ```
@@ -33,13 +32,13 @@ Use **--memory** option to control JVM's heap size.
 JMX
 ---
 
-The JVM runnig dCache is configured for JMX monitoring on the port **7771**.
+The JVM running dCache is configured for JMX monitoring on the port **7771**.
 
 Running provided docker-compose
 -------------------------------
 
 The provided **docker-compose.yml** files allows to start minimal dCache with a single pool and service.
-Update the config to adjust to your envirnoment, like hosts external IP which will be advertised by dCache
+Update the config to adjust to your environment, like hosts external IP which will be advertised by dCache
 pool.
 
 The **.env** file:
