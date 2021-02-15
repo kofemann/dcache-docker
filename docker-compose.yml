@@ -21,10 +21,11 @@ services:
     - POSTGRES_PASSWORD=let-me-in
 
   dcache:
-    image: dcache/dcache:5.0
+    image: dcache/dcache:7.0
     depends_on:
     - pg
     - zk
+    command: core
     environment:
     - LOCALADDRESS=${LOCAL_ADDRESS}
     links:

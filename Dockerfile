@@ -32,6 +32,7 @@ COPY liquibase-core-3.5.3.jar ${DCACHE_INSTALL_DIR}/share/classes/liquibase-core
 
 
 # add external files into container at the build time
+COPY je.properties ${DCACHE_INSTALL_DIR}/var/nfs/je.properties
 COPY dcache.conf ${DCACHE_INSTALL_DIR}/etc/dcache.conf
 COPY docker-layout.conf ${DCACHE_INSTALL_DIR}/etc/layouts/docker-layout.conf
 COPY exports ${DCACHE_INSTALL_DIR}/etc/exports
@@ -39,6 +40,9 @@ COPY run.sh /run.sh
 
 # where we store the data
 RUN mkdir /pool
+
+# Stupid grid tools....
+RUN mkdir -p /etc/grid-security/certificates
 
 # adjust permissions
 RUN chown -R dcache:dcache ${DCACHE_INSTALL_DIR}/var
