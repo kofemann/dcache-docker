@@ -14,6 +14,16 @@ export CLASSPATH=${DCACHE_HOME}/share/classes/*
 # we hope that there is only one agent file and it the right one
 ASPECT_AGENT=`ls ${DCACHE_HOME}/share/classes/aspectjweaver-*.jar`
 
+
+if [ ! -f /.init_complete ]
+then
+  for f in `ls /dcache.init.d`
+  do
+    . /dcache.init.d/$f
+  done
+fi
+
+
 /usr/bin/java \
 	-Dsun.net.inetaddr.ttl=1800 \
 	-Dorg.globus.tcp.port.range=20000,25000 \

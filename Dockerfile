@@ -41,6 +41,9 @@ COPY run.sh /run.sh
 # where we store the data
 RUN mkdir /pool
 
+# location of init scripts
+RUN mkdir /dcache.init.d
+
 # Stupid grid tools....
 RUN mkdir -p /etc/grid-security/certificates
 
@@ -48,10 +51,10 @@ RUN mkdir -p /etc/grid-security/certificates
 RUN chown -R dcache:dcache ${DCACHE_INSTALL_DIR}/var
 RUN chown -R dcache:dcache /pool
 
-
 # the data log files must survive container restarts
 VOLUME ${DCACHE_INSTALL_DIR}/var
 VOLUME /pool
+VOLUME /dcache.init.d
 
 # expose TCP ports for network services
 EXPOSE 2288 22125 2049 32049 22224

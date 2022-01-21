@@ -9,7 +9,7 @@ For example, to built container to run version 3.1.2 you will need to copy
 dcache-3.1.2.tar file into current directory and run __docker run__ command:
 
 ```
-$ docker build -t local/dcache-3.1 --build-arg=VERSION=3.1.2 .
+$ docker build -t local/dcache:3.1 --build-arg=VERSION=3.1.2 .
 ```
 
 How to run
