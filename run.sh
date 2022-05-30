@@ -1,12 +1,13 @@
 #!/bin/sh
 
-if [ $# -ne 1 ]
+DOMAIN=$1
+
+if [ -z $DOMAIN ]
 then
-  echo "domain name expected"
-  exit 1
+  DOMAIN=`hostname -s`
 fi
 
-DOMAIN=$1
+echo $DOMAIN
 
 DCACHE_HOME=${DCACHE_INSTALL_DIR}
 export CLASSPATH=${DCACHE_HOME}/share/classes/*
